@@ -1,0 +1,61 @@
+@if (site.state().loading) {
+  <main class="state-shell">
+    <p class="state-label">Cargando sitio...</p>
+  </main>
+} @else if (site.state().error) {
+  <main class="state-shell">
+    <p class="state-label">No fue posible cargar el contenido.</p>
+    <button type="button" (click)="site.load()">Reintentar</button>
+  </main>
+} @else if (site.state().data; as data) {
+  <header class="site-header">
+    <a class="brand" routerLink="/">{{ data.tenant.name }}</a>
+    <app-site-navigation [items]="data.navigation" />
+    <a class="cms-link" routerLink="/cms">Probar CMS</a>
+  </header>
+
+  <main>
+    <router-outlet />
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <section class="footer-brand">
+        <a class="brand footer-logo" routerLink="/">{{ data.tenant.name }}</a>
+        <p>
+          Laboratorio clinico ficticio con experiencia digital, contenido editable y una demo CMS
+          lista para explorar en el navegador.
+        </p>
+      </section>
+
+      <section>
+        <h2>Sitio</h2>
+        <nav aria-label="Navegacion del footer">
+          @for (item of data.navigation; track item.id) {
+            <a [routerLink]="item.url">{{ item.label }}</a>
+          }
+        </nav>
+      </section>
+
+      <section>
+        <h2>Contacto demo</h2>
+        <address>
+          <span>Av. Horizonte 210, CDMX</span>
+          <a href="tel:+525581422030">55 8142 2030</a>
+          <a href="mailto:hola@novabiometrics.demo">hola@novabiometrics.demo</a>
+        </address>
+      </section>
+
+      <section>
+        <h2>Portafolio</h2>
+        <p>Prueba el CMS, edita textos, imagenes y colores, guarda y vuelve al sitio.</p>
+        <a class="footer-cta" routerLink="/cms">Abrir CMS demo</a>
+      </section>
+    </div>
+
+    <div class="footer-bottom">
+      <p>{{ data.tenant.name }} - Demo frontend sin API</p>
+      <p>Contenido guardado localmente en el navegador.</p>
+    </div>
+  </footer>
+}

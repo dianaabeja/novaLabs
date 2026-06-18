@@ -1,0 +1,82 @@
+@if (site.state().data; as data) {
+  @if (view(); as page) {
+    @if (page.sections.length) {
+      @for (section of page.sections; track section.instanceKey) {
+        <app-section-renderer
+          [section]="section"
+          [styles]="data.styles"
+          [mediaById]="data.mediaById"
+        />
+      }
+    } @else {
+      <section class="empty-page">
+        <p class="eyebrow">{{ page.page.label }}</p>
+        <h1>Contenido en preparacion</h1>
+      </section>
+    }
+
+    @if (page.showHomeModules) {
+      <section class="demo-section">
+        <div class="demo-section__inner">
+          <div>
+            <p class="eyebrow">Demo interactiva</p>
+            <h2>Edita este sitio desde el CMS</h2>
+            <p>
+              Este frontend no usa backend. Entra al CMS, cambia textos, secciones, FAQs,
+              certificaciones, imagenes o colores, guarda y vuelve al sitio para ver el cambio.
+            </p>
+          </div>
+          <a routerLink="/cms">Probar CMS</a>
+        </div>
+      </section>
+    }
+
+    @if (page.showHomeModules && data.certifications.length) {
+      <section class="content-section muted">
+        <div class="content-section__inner">
+          <p class="eyebrow">Certificaciones</p>
+          <h2>Confianza respaldada</h2>
+          <div class="content-grid">
+            @for (certification of data.certifications; track certification.id) {
+              <article>
+                @if (certification.mediaAssetId; as mediaAssetId) {
+                  <app-safe-media [asset]="data.mediaById.get(mediaAssetId)" />
+                }
+                <h3>{{ certification.name }}</h3>
+                <p>{{ certification.description }}</p>
+                @if (certification.documentUrl | safePublicUrl; as documentUrl) {
+                  <a class="document-link" [href]="documentUrl" target="_blank" rel="noopener">
+                    Consultar documento
+                  </a>
+                }
+              </article>
+            }
+          </div>
+        </div>
+      </section>
+    }
+
+    @if (page.showHomeModules && data.faqs.length) {
+      <section class="content-section">
+        <div class="content-section__inner">
+          <p class="eyebrow">Preguntas frecuentes</p>
+          <h2>Respuestas claras</h2>
+          <div class="faq-list">
+            @for (faq of data.faqs; track faq.id) {
+              <details>
+                <summary>{{ faq.question }}</summary>
+                <p>{{ faq.answer }}</p>
+              </details>
+            }
+          </div>
+        </div>
+      </section>
+    }
+  } @else {
+    <section class="empty-page">
+      <p class="eyebrow">404</p>
+      <h1>Pagina no encontrada</h1>
+      <p>El contenido solicitado no esta disponible.</p>
+    </section>
+  }
+}

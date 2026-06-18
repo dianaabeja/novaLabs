@@ -1,0 +1,390 @@
+<section class="cms-shell">
+  <aside class="cms-sidebar">
+    <a class="back-link" routerLink="/">Ver sitio publicado</a>
+    <p class="cms-kicker">Demo editable</p>
+    <h1>CMS local</h1>
+    <p class="demo-note">
+      Edita contenido, guarda y vuelve al sitio. Los cambios se quedan solo en tu navegador.
+    </p>
+    <p class="status-pill">{{ status() }}</p>
+
+    <nav aria-label="Secciones CMS">
+      @for (item of tabs; track item.key) {
+        <button type="button" [class.active]="tab() === item.key" (click)="setTab(item.key)">
+          {{ item.label }}
+        </button>
+      }
+    </nav>
+
+    <div class="actions">
+      <button class="primary" type="button" (click)="save()">Guardar y publicar</button>
+      <button type="button" (click)="reset()">Restaurar demo</button>
+    </div>
+  </aside>
+
+  <div class="cms-content">
+    @if (tab() === 'sections') {
+      <header>
+        <div>
+          <p class="section-kicker">Contenido del sitio</p>
+          <h2>Secciones publicas</h2>
+          <p class="section-help">Edita los bloques que aparecen en Inicio, Nosotros y Contacto.</p>
+        </div>
+        <button type="button" (click)="addSection()">Agregar seccion</button>
+      </header>
+
+      <div class="editor-list">
+        @for (item of layout(); track item.id) {
+          <article class="editor-card">
+            <div class="card-head">
+              <label>
+                Visible
+                <input type="checkbox" [(ngModel)]="item.isVisible" />
+              </label>
+              <button type="button" (click)="removeSection(item.id)">Eliminar</button>
+            </div>
+
+            <div class="form-grid">
+              <label>
+                Orden
+                <input type="number" min="1" [(ngModel)]="item.sortOrder" />
+              </label>
+              <label>
+                Pagina
+                <select [(ngModel)]="item.section.pageKey">
+                  @for (page of pages(); track page.pageKey) {
+                    <option [value]="page.pageKey">{{ page.label }}</option>
+                  }
+                </select>
+              </label>
+              <label>
+                Tipo
+                <select [(ngModel)]="item.section.sectionType">
+                  @for (type of componentTypes(); track type.typeKey) {
+                    <option [value]="type.typeKey">{{ type.label }}</option>
+                  }
+                </select>
+              </label>
+              <label>
+                Media
+                <select [(ngModel)]="item.section.mediaAssetId">
+                  <option [ngValue]="null">Sin media</option>
+                  @for (asset of media(); track asset.id) {
+                    <option [value]="asset.id">{{ asset.filename }}</option>
+                  }
+                </select>
+              </label>
+              <label class="wide">
+                Titulo
+                <input [(ngModel)]="item.section.title" />
+              </label>
+              <label class="wide">
+                Subtitulo
+                <input [(ngModel)]="item.section.subtitle" />
+              </label>
+              <label>
+                Badge
+                <input [(ngModel)]="item.section.badgeText" />
+              </label>
+              <label>
+                Fondo
+                <input
+                  type="color"
+                  [ngModel]="item.section.style?.backgroundColor"
+                  (ngModelChange)="updateSectionBackground(item, $event)"
+                />
+              </label>
+              <label>
+                Color titulo
+                <input
+                  type="color"
+                  [ngModel]="item.section.style?.title?.color ?? '#DBEAFE'"
+                  (ngModelChange)="updateTextColor(item, 'title', $event)"
+                />
+              </label>
+              <label>
+                Color subtitulo
+                <input
+                  type="color"
+                  [ngModel]="item.section.style?.subtitle?.color ?? '#93A4BC'"
+                  (ngModelChange)="updateTextColor(item, 'subtitle', $event)"
+                />
+              </label>
+              <label>
+                Color descripcion
+                <input
+                  type="color"
+                  [ngModel]="item.section.style?.description?.color ?? '#93A4BC'"
+                  (ngModelChange)="updateTextColor(item, 'description', $event)"
+                />
+              </label>
+              <label class="wide">
+                Descripcion
+                <textarea rows="4" [(ngModel)]="item.section.description"></textarea>
+              </label>
+              <label>
+                Texto boton
+                <input [(ngModel)]="item.section.primaryButtonText" />
+              </label>
+              <label>
+                URL boton
+                <input [(ngModel)]="item.section.primaryButtonUrl" />
+              </label>
+              <label>
+                Texto boton
+                <input
+                  type="color"
+                  [ngModel]="item.section.style?.primaryButton?.color ?? '#F8FBFF'"
+                  (ngModelChange)="updateButtonColor(item, 'color', $event)"
+                />
+              </label>
+              <label>
+                Fondo boton
+                <input
+                  type="color"
+                  [ngModel]="item.section.style?.primaryButton?.backgroundColor ?? '#2563EB'"
+                  (ngModelChange)="updateButtonColor(item, 'backgroundColor', $event)"
+                />
+              </label>
+              <label>
+                Borde boton
+                <input
+                  type="color"
+                  [ngModel]="item.section.style?.primaryButton?.borderColor ?? '#2563EB'"
+                  (ngModelChange)="updateButtonColor(item, 'borderColor', $event)"
+                />
+              </label>
+            </div>
+          </article>
+        }
+      </div>
+    }
+
+    @if (tab() === 'pages') {
+      <header>
+        <div>
+          <p class="section-kicker">Estructura</p>
+          <h2>Paginas, navegacion y SEO</h2>
+          <p class="section-help">Activa paginas, cambia rutas y ajusta textos para buscadores.</p>
+        </div>
+        <button type="button" (click)="addPage()">Agregar pagina</button>
+      </header>
+
+      <div class="editor-list">
+        @for (page of pages(); track page.pageKey) {
+          <article class="editor-card">
+            <div class="card-head">
+              <label>
+                Activa
+                <input type="checkbox" [(ngModel)]="page.isActive" />
+              </label>
+              <button type="button" (click)="removePage(page.pageKey)">Eliminar</button>
+            </div>
+            <div class="form-grid">
+              <label>
+                Nombre
+                <input [(ngModel)]="page.label" />
+              </label>
+              <label>
+                Ruta
+                <input
+                  [ngModel]="page.route"
+                  (ngModelChange)="updatePageRoute(page, $event)"
+                />
+              </label>
+              @for (seo of draft().seo?.pages ?? []; track seo.route) {
+                @if (seo.route === page.route) {
+                  <label>
+                    SEO title
+                    <input [(ngModel)]="seo.title" />
+                  </label>
+                  <label class="wide">
+                    SEO description
+                    <textarea rows="3" [(ngModel)]="seo.description"></textarea>
+                  </label>
+                }
+              }
+            </div>
+          </article>
+        }
+      </div>
+    }
+
+    @if (tab() === 'faqs') {
+      <header>
+        <div>
+          <p class="section-kicker">Soporte</p>
+          <h2>Preguntas frecuentes</h2>
+          <p class="section-help">Publica respuestas cortas que aparecen en la pagina de inicio.</p>
+        </div>
+        <button type="button" (click)="addFaq()">Agregar FAQ</button>
+      </header>
+
+      <div class="editor-list">
+        @for (faq of faqs(); track faq.id) {
+          <article class="editor-card">
+            <div class="card-head">
+              <label>
+                Activa
+                <input type="checkbox" [(ngModel)]="faq.isActive" />
+              </label>
+              <button type="button" (click)="removeFaq(faq.id)">Eliminar</button>
+            </div>
+            <div class="form-grid">
+              <label>
+                Orden
+                <input type="number" min="1" [(ngModel)]="faq.sortOrder" />
+              </label>
+              <label>
+                Categoria
+                <input [(ngModel)]="faq.category" />
+              </label>
+              <label class="wide">
+                Pregunta
+                <input [(ngModel)]="faq.question" />
+              </label>
+              <label class="wide">
+                Respuesta
+                <textarea rows="4" [(ngModel)]="faq.answer"></textarea>
+              </label>
+            </div>
+          </article>
+        }
+      </div>
+    }
+
+    @if (tab() === 'certifications') {
+      <header>
+        <div>
+          <p class="section-kicker">Confianza</p>
+          <h2>Certificaciones</h2>
+          <p class="section-help">Administra acreditaciones, documentos y tarjetas visibles.</p>
+        </div>
+        <button type="button" (click)="addCertification()">Agregar certificacion</button>
+      </header>
+
+      <div class="editor-list">
+        @for (certification of certifications(); track certification.id) {
+          <article class="editor-card">
+            <div class="card-head">
+              <label>
+                Activa
+                <input type="checkbox" [(ngModel)]="certification.isActive" />
+              </label>
+              <button type="button" (click)="removeCertification(certification.id)">
+                Eliminar
+              </button>
+            </div>
+            <div class="form-grid">
+              <label>
+                Orden
+                <input type="number" min="1" [(ngModel)]="certification.sortOrder" />
+              </label>
+              <label>
+                Nombre
+                <input [(ngModel)]="certification.name" />
+              </label>
+              <label>
+                Emisor
+                <input [(ngModel)]="certification.issuingBody" />
+              </label>
+              <label>
+                Documento
+                <input [(ngModel)]="certification.documentUrl" />
+              </label>
+              <label>
+                Media
+                <select [(ngModel)]="certification.mediaAssetId">
+                  <option [ngValue]="null">Sin media</option>
+                  @for (asset of media(); track asset.id) {
+                    <option [value]="asset.id">{{ asset.filename }}</option>
+                  }
+                </select>
+              </label>
+              <label class="wide">
+                Descripcion
+                <textarea rows="4" [(ngModel)]="certification.description"></textarea>
+              </label>
+            </div>
+          </article>
+        }
+      </div>
+    }
+
+    @if (tab() === 'media') {
+      <header>
+        <div>
+          <p class="section-kicker">Recursos</p>
+          <h2>Biblioteca multimedia</h2>
+          <p class="section-help">Agrega imagenes publicas y reutilizalas en secciones o certificaciones.</p>
+        </div>
+        <button type="button" (click)="addMedia()">Agregar media</button>
+      </header>
+
+      <div class="media-grid">
+        @for (asset of media(); track asset.id) {
+          <article class="editor-card">
+            @if (asset.resourceType === 'IMAGE') {
+              <img [src]="asset.url" [alt]="asset.altText ?? ''" />
+            }
+            <div class="form-grid">
+              <label>
+                Archivo
+                <input [(ngModel)]="asset.filename" />
+              </label>
+              <label>
+                Tipo
+                <select [(ngModel)]="asset.resourceType">
+                  <option value="IMAGE">Imagen</option>
+                  <option value="DOCUMENT">Documento</option>
+                  <option value="VIDEO">Video</option>
+                  <option value="OTHER">Otro</option>
+                </select>
+              </label>
+              <label class="wide">
+                URL publica
+                <input [(ngModel)]="asset.url" />
+              </label>
+              <label class="wide">
+                Alt text
+                <input [(ngModel)]="asset.altText" />
+              </label>
+            </div>
+            <button type="button" (click)="removeMedia(asset.id)">Eliminar</button>
+          </article>
+        }
+      </div>
+    }
+
+    @if (tab() === 'styles') {
+      <header>
+        <div>
+          <p class="section-kicker">Apariencia</p>
+          <h2>Estilos de marca</h2>
+          <p class="section-help">Cambia los colores principales usados por la plantilla publica.</p>
+        </div>
+      </header>
+
+      <article class="editor-card">
+        <div class="form-grid">
+          <label>
+            Color primario
+            <input
+              type="color"
+              [ngModel]="brand().primaryColor"
+              (ngModelChange)="updateBrandColor('primaryColor', $event)"
+            />
+          </label>
+          <label>
+            Color acento
+            <input
+              type="color"
+              [ngModel]="brand().accentColor"
+              (ngModelChange)="updateBrandColor('accentColor', $event)"
+            />
+          </label>
+        </div>
+      </article>
+    }
+  </div>
+</section>

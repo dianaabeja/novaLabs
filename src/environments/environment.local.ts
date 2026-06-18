@@ -1,0 +1,8 @@
+import { AppEnvironment } from './environment.model';
+
+export const environment: AppEnvironment = {
+  production: false,
+  apiBaseUrl: 'http://localhost:3000/api',
+  localTenantSlug: 'default',
+  traceHttp: true,
+};

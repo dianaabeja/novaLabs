@@ -1,0 +1,50 @@
+<button
+  class="menu-toggle"
+  type="button"
+  [attr.aria-expanded]="expanded()"
+  aria-controls="site-navigation-items"
+  aria-label="Abrir navegacion"
+  (click)="toggle()"
+>
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<nav aria-label="Navegacion principal">
+  <ng-template #navigationItems let-items let-depth="depth">
+    <ul [class.root]="depth === 0" [class.submenu]="depth > 0">
+      @for (item of items; track item.id) {
+        <li>
+          @if (isExternal(item.url)) {
+            <a [href]="item.url" target="_blank" rel="noopener">
+              {{ item.label }}
+            </a>
+          } @else {
+            <a
+              [routerLink]="item.url"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: item.url === '/' }"
+              (click)="close()"
+            >
+              {{ item.label }}
+            </a>
+          }
+          @if (item.children.length) {
+            <ng-container
+              [ngTemplateOutlet]="navigationItems"
+              [ngTemplateOutletContext]="{ $implicit: item.children, depth: depth + 1 }"
+            />
+          }
+        </li>
+      }
+    </ul>
+  </ng-template>
+
+  <div id="site-navigation-items" class="items" [class.expanded]="expanded()">
+    <ng-container
+      [ngTemplateOutlet]="navigationItems"
+      [ngTemplateOutletContext]="{ $implicit: items(), depth: 0 }"
+    />
+  </div>
+</nav>
