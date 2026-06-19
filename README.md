@@ -83,12 +83,12 @@ Below is a structured section for showcasing the most important views of the app
 
 ### Homepage
 
-![Homepage overview](src\assets\brand\homepage.png)
+![Homepage overview](src/assets/brand/homepage.png)
 
 A complete view of the public landing page, including the hero section, navigation, and main call-to-action areas.
 
 ### CMS Demo
-![CMS interface](src\assets\brand\cms-demo.png)
+![CMS interface](src/assets/brand/cms-demo.png)
 
 A preview of the CMS experience for editing sections, texts, and layout content.
 
