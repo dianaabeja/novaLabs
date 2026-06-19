@@ -56,7 +56,13 @@
   padding: 9px 12px;
   text-decoration: none;
   text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   white-space: nowrap;
+}
+
+.cms-link:hover {
+  box-shadow: 0 18px 40px rgba(56, 189, 248, 0.3);
+  transform: translateY(-1px);
 }
 
 .state-shell {
@@ -81,6 +87,21 @@ button {
   font-weight: 750;
   margin-top: 24px;
   padding: 12px 18px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  box-shadow: 0 14px 32px rgba(37, 99, 235, 0.28);
+  transform: translateY(-1px);
+}
+
+button:focus-visible,
+.cms-link:focus-visible,
+.brand:focus-visible,
+.site-footer a:focus-visible,
+.footer-cta:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 3px;
 }
 
 .site-footer {
@@ -129,6 +150,7 @@ address {
 .site-footer a {
   color: #93a4bc;
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .site-footer a:hover {
@@ -143,6 +165,7 @@ address {
   font-weight: 800;
   margin-top: 16px;
   padding: 10px 12px;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .footer-cta:hover {

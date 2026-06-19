@@ -16,11 +16,12 @@ export const PUBLIC_SITE_MOCK: PublicSiteDto = {
           pageKey: 'home',
           instanceKey: 'hero',
           sectionType: 'home',
-          title: 'Diagnostico clinico rapido con tecnologia cercana',
-          subtitle: 'Estudios de laboratorio para personas, clinicas y equipos empresariales.',
-          badgeText: '24h entrega digital',
+          title: 'Diagnóstico clínico rápido con tecnología cercana',
+          subtitle:
+            'Estudios de laboratorio, seguimiento clínico y soluciones para pacientes, clínicas y organizaciones.',
+          badgeText: 'Entrega digital en 24h',
           description:
-            'Nova Biometrics combina toma de muestras, analisis especializado y entrega digital de resultados en una experiencia clara, moderna y facil de administrar.',
+            'Nova Biometrics combina toma de muestras, análisis especializado y entrega digital de resultados en una experiencia clara, moderna y fácil de administrar.',
           primaryButtonText: 'Agendar estudio',
           primaryButtonUrl: '/contacto',
           mediaAssetId: 'lab-team',
@@ -37,10 +38,11 @@ export const PUBLIC_SITE_MOCK: PublicSiteDto = {
           pageKey: 'home',
           instanceKey: 'services',
           sectionType: 'about',
-          title: 'Servicios clinicos para decisiones oportunas',
-          subtitle: 'Perfiles preventivos, pruebas hormonales, microbiologia y salud ocupacional.',
+          title: 'Servicios clínicos para decisiones oportunas',
+          subtitle:
+            'Perfiles preventivos, pruebas hormonales, microbiología y salud ocupacional.',
           description:
-            'El CMS local permite publicar servicios, ajustar mensajes comerciales y mantener visible la informacion clave para pacientes y aliados.',
+            'El CMS local permite publicar servicios, ajustar mensajes comerciales y mantener visible la información clave para pacientes y aliados.',
           mediaAssetId: 'sample-analysis',
           style: {
             backgroundColor: '#080C14',
@@ -55,10 +57,10 @@ export const PUBLIC_SITE_MOCK: PublicSiteDto = {
           pageKey: 'about',
           instanceKey: 'about-main',
           sectionType: 'about',
-          title: 'Un laboratorio ficticio con operacion de nivel profesional',
-          subtitle: 'Procesos claros, reportes digitales y atencion orientada al paciente.',
+          title: 'Un laboratorio con una operación de nivel profesional',
+          subtitle: 'Procesos claros, reportes digitales y atención orientada al paciente.',
           description:
-            'Esta demo muestra como un laboratorio puede administrar paginas, SEO, navegacion, secciones y recursos multimedia sin depender de una API.',
+            'Esta demo muestra cómo un laboratorio puede administrar páginas, SEO, navegación, secciones y recursos multimedia sin depender de una API.',
           mediaAssetId: 'microscope',
           style: {
             backgroundColor: '#080C14',
@@ -74,9 +76,9 @@ export const PUBLIC_SITE_MOCK: PublicSiteDto = {
           instanceKey: 'contact-main',
           sectionType: 'contact',
           title: 'Agenda una toma o solicita una propuesta',
-          subtitle: 'Atencion en sucursal, domicilio y jornadas empresariales.',
+          subtitle: 'Atención en sucursal, domicilio y jornadas empresariales.',
           description:
-            'Telefono: 55 8142 2030. Correo: hola@novabiometrics.demo. Direccion: Av. Horizonte 210, CDMX.',
+            'Teléfono: 55 8142 2030. Correo: hola@novabiometrics.demo. Dirección: Av. Horizonte 210, CDMX.',
           primaryButtonText: 'Enviar WhatsApp',
           primaryButtonUrl: 'https://wa.me/525512349876',
           mediaAssetId: null,
