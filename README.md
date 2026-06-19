@@ -77,6 +77,21 @@ The project includes multiple environment files:
 - `src/environments/environment.stage.ts` for staging
 - `src/environments/environment.production.ts` for production
 
+## Screenshots
+
+Below is a structured section for showcasing the most important views of the application.
+
+### Homepage
+
+![Homepage overview](src\assets\brand\homepage.png)
+
+A complete view of the public landing page, including the hero section, navigation, and main call-to-action areas.
+
+### CMS Demo
+![CMS interface](src\assets\brand\cms-demo.png)
+
+A preview of the CMS experience for editing sections, texts, and layout content.
+
 ## Deployment
 
 The frontend is configured for deployment on Vercel using [vercel.json](vercel.json).
