@@ -1,6 +1,14 @@
 {
   "name": "lab-frontend",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Angular frontend for the Ad Astra Labs public site and CMS demo.",
+  "author": "Ad Astra Labs",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/lab-frontend"
+  },
+  "homepage": "https://your-project-domain.vercel.app",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

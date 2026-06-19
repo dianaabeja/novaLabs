@@ -1,59 +1,86 @@
-# LabFrontend
+# Ad Astra Labs Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.26.
+A modern Angular 20 frontend for showcasing a configurable public site and a lightweight CMS demo. The project is designed to present tenant-specific content, navigation, sections, certifications, FAQs, and media assets in a polished, maintainable way.
 
-## Development server
+## Overview
 
-To start a local development server, run:
+- Built with Angular 20 and standalone components
+- Uses environment-based configurations for local, stage, and production setups
+- Includes a demo CMS flow for editing content directly in the browser
+- Ready for deployment to Vercel with a static SPA rewrite configuration
 
-```bash
-ng serve
+## Tech Stack
+
+- Angular 20
+- TypeScript
+- RxJS
+- SCSS
+- Vercel deployment configuration
+
+## Project Structure
+
+```text
+src/
+├── app/
+│   ├── core/               # shared infrastructure and interceptors
+│   ├── data-access/        # DTOs, repositories, adapters, and API sources
+│   ├── features/
+│   │   ├── cms/            # CMS demo pages and editing flow
+│   │   └── site/           # public site rendering and navigation
+│   └── shared/             # reusable pipes and helpers
+├── environments/           # environment-specific config files
+└── styles.scss             # global styles
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Getting Started
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 1. Install dependencies
 
 ```bash
-ng generate component component-name
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 2. Run the development server
 
 ```bash
-ng generate --help
+npm start
 ```
 
-## Building
+The app will be available at:
 
-To build the project run:
+- http://localhost:4200
+
+### 3. Build for production
 
 ```bash
-ng build
+npm run build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Available Scripts
 
 ```bash
-ng test
+npm start           # start the development server
+npm run start:local # start with local environment config
+npm run start:stage # start with stage environment config
+npm run build       # production build
+npm run build:local # local build
+npm run build:stage # stage build
+npm test            # run unit tests
 ```
 
-## Running end-to-end tests
+## Environment Configuration
 
-For end-to-end (e2e) testing, run:
+The project includes multiple environment files:
 
-```bash
-ng e2e
-```
+- `src/environments/environment.ts` for default development settings
+- `src/environments/environment.local.ts` for local testing
+- `src/environments/environment.stage.ts` for staging
+- `src/environments/environment.production.ts` for production
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Deployment
 
-## Additional Resources
+The frontend is configured for deployment on Vercel using [vercel.json](vercel.json).
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Notes
+
+This repository focuses on the frontend presentation layer. If you are working with the API or CMS backend, refer to the related backend documentation in the workspace for full end-to-end setup instructions.
