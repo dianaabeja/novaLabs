@@ -9,15 +9,15 @@ A modern Angular 20 frontend for showcasing a configurable public site and a lig
 - Includes a demo CMS flow for editing content directly in the browser
 - Ready for deployment to Vercel with a static SPA rewrite configuration
 
-## Arquitectura general
+## Architecture Overview
 
-![Diagrama UML de componentes de Nova Biometrics](src/assets/brand/architecture-cms.svg)
+![Nova Biometrics UML component diagram](src/assets/brand/architecture-cms.svg)
 
-Nova Biometrics es una plataforma CMS multi-tenant compuesta por dos aplicaciones Angular independientes: una landing pública, optimizada para mostrar contenido, y un panel CMS protegido para administrarlo. Ambas consumen una API NestJS compartida, responsable de resolver el tenant, aplicar autenticación y permisos, exponer los contratos REST y persistir la configuración de cada negocio en PostgreSQL mediante Prisma. Así, una nueva landing se crea por configuración de tenant y contenido, sin duplicar el frontend ni el esquema de datos.
+Nova Biometrics is a multi-tenant CMS platform composed of two independent Angular applications: a public landing, optimized for presenting content, and a protected CMS panel for managing it. Both consume a shared NestJS API that resolves the tenant, applies authentication and permissions, exposes REST contracts, and persists each business configuration in PostgreSQL through Prisma. This allows a new landing to be created through tenant and content configuration, without duplicating the frontend or data schema.
 
-### Modo demostración
+### Demo Mode
 
-Este frontend está preparado para integrarse con la arquitectura descrita y consumir los contratos de la API. Para que pueda ejecutarse y mostrarse de forma independiente en este repositorio, actualmente utiliza datos mock que simulan la respuesta del sitio público; por ello, la experiencia visual y de navegación funciona sin requerir la API, el CMS ni la base de datos activos.
+This frontend is prepared to integrate with the architecture described above and consume its API contracts. To run and be showcased independently in this repository, it currently uses mock data that simulates the public-site response. The visual and navigation experience therefore works without an active API, CMS, or database.
 
 ## Tech Stack
 
