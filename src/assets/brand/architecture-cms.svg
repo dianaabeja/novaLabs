@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="790" viewBox="0 0 1400 790" role="img" aria-labelledby="title description">
-  <title id="title">Diagrama UML de componentes de Nova Biometrics</title>
-  <desc id="description">Diagrama UML que relaciona visitantes y administradores con la landing pública y el CMS Angular; ambos consumen una API NestJS que utiliza PostgreSQL y servicios de correo y reportes.</desc>
+  <title id="title">Nova Biometrics UML Component Diagram</title>
+  <desc id="description">UML diagram connecting visitors and administrators to an Angular public landing and CMS. Both consume a NestJS API that uses PostgreSQL and reporting services.</desc>
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#334155"/></marker>
     <style>
@@ -8,55 +8,50 @@
     </style>
   </defs>
   <rect width="1400" height="790" fill="#ffffff"/>
-  <text x="70" y="65" class="page-title">Nova Biometrics · arquitectura de componentes</text>
-  <text x="70" y="93" class="meta">UML · plataforma CMS multi-tenant</text>
+  <text x="70" y="65" class="page-title">Nova Biometrics · Component Architecture</text>
+  <text x="70" y="93" class="meta">UML · Multi-tenant CMS platform</text>
   <line x1="70" y1="117" x2="1330" y2="117" stroke="#cbd5e1"/>
 
-  <!-- Actors -->
   <g stroke="#334155" stroke-width="2" fill="none">
     <circle cx="130" cy="260" r="18"/><path d="M130 278v55m-30-30h60m-30 30l-27 35m27-35l27 35"/>
     <circle cx="130" cy="520" r="18"/><path d="M130 538v55m-30-30h60m-30 30l-27 35m27-35l27 35"/>
   </g>
-  <text x="96" y="395" class="actor">Visitante</text>
-  <text x="78" y="655" class="actor">Administrador</text>
+  <text x="96" y="395" class="actor">Visitor</text>
+  <text x="78" y="655" class="actor">Administrator</text>
 
-  <!-- Public frontend -->
   <g>
     <rect x="300" y="180" width="310" height="190" rx="4" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
     <line x1="300" y1="264" x2="610" y2="264" stroke="#334155" stroke-width="1.5"/>
     <text x="455" y="215" text-anchor="middle" class="stereotype">«component»</text>
     <text x="455" y="246" text-anchor="middle" class="name">Landing Frontend</text>
-    <text x="455" y="297" text-anchor="middle" class="detail">Angular 20 · aplicación pública</text>
-    <text x="455" y="326" text-anchor="middle" class="detail">Páginas, secciones y navegación</text>
-    <text x="455" y="349" text-anchor="middle" class="detail">Media, estilos y SEO</text>
+    <text x="455" y="297" text-anchor="middle" class="detail">Angular 20 · Public application</text>
+    <text x="455" y="326" text-anchor="middle" class="detail">Pages, sections, and navigation</text>
+    <text x="455" y="349" text-anchor="middle" class="detail">Media, styles, and SEO</text>
   </g>
 
-  <!-- CMS -->
   <g>
     <rect x="300" y="450" width="310" height="190" rx="4" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
     <line x1="300" y1="534" x2="610" y2="534" stroke="#334155" stroke-width="1.5"/>
     <text x="455" y="485" text-anchor="middle" class="stereotype">«component»</text>
-    <text x="455" y="516" text-anchor="middle" class="name">CMS Administrativo</text>
-    <text x="455" y="567" text-anchor="middle" class="detail">Angular 20 · aplicación privada</text>
-    <text x="455" y="596" text-anchor="middle" class="detail">Contenido, usuarios y media</text>
-    <text x="455" y="619" text-anchor="middle" class="detail">Autenticación y permisos</text>
+    <text x="455" y="516" text-anchor="middle" class="name">Administrative CMS</text>
+    <text x="455" y="567" text-anchor="middle" class="detail">Angular 20 · Private application</text>
+    <text x="455" y="596" text-anchor="middle" class="detail">Content, users, and media</text>
+    <text x="455" y="619" text-anchor="middle" class="detail">Authentication and permissions</text>
   </g>
 
-  <!-- API -->
   <g>
     <rect x="790" y="250" width="350" height="330" rx="4" fill="#f8fafc" stroke="#0f766e" stroke-width="2"/>
     <line x1="790" y1="334" x2="1140" y2="334" stroke="#0f766e" stroke-width="1.5"/>
     <text x="965" y="285" text-anchor="middle" class="stereotype">«component»</text>
-    <text x="965" y="316" text-anchor="middle" class="name">API Nova Biometrics</text>
+    <text x="965" y="316" text-anchor="middle" class="name">Nova Biometrics API</text>
     <text x="825" y="374" class="detail">NestJS · REST · Prisma</text>
-    <text x="825" y="414" class="detail">• Resolución de tenant</text>
-    <text x="825" y="444" class="detail">• Auth, JWT, roles y permisos</text>
-    <text x="825" y="474" class="detail">• Sitio público y módulos CMS</text>
-    <text x="825" y="504" class="detail">• Auditoría y rate limiting</text>
-    <text x="825" y="544" class="detail">• Contratos y aislamiento de datos</text>
+    <text x="825" y="414" class="detail">• Tenant resolution</text>
+    <text x="825" y="444" class="detail">• Auth, JWT, roles, and permissions</text>
+    <text x="825" y="474" class="detail">• Public site and CMS modules</text>
+    <text x="825" y="504" class="detail">• Audit logging and rate limiting</text>
+    <text x="825" y="544" class="detail">• Contracts and data isolation</text>
   </g>
 
-  <!-- Infrastructure -->
   <g>
     <path d="M1225 294c0-15 30-26 67-26s67 11 67 26v112c0 15-30 26-67 26s-67-11-67-26z" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
     <ellipse cx="1292" cy="294" rx="67" ry="26" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
@@ -69,23 +64,22 @@
     <rect x="1215" y="510" width="155" height="104" rx="4" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
     <text x="1292" y="545" text-anchor="middle" class="stereotype">«external service»</text>
     <text x="1292" y="574" text-anchor="middle" class="name">Email / XLSX</text>
-    <text x="1292" y="598" text-anchor="middle" class="detail">Reportes de auditoría</text>
+    <text x="1292" y="598" text-anchor="middle" class="detail">Audit reports</text>
   </g>
 
-  <!-- Relationships -->
   <path d="M170 305 H275" stroke="#334155" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
-  <text x="190" y="290" class="relation">consulta</text>
+  <text x="190" y="290" class="relation">views</text>
   <path d="M170 565 H275" stroke="#334155" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
-  <text x="184" y="550" class="relation">administra</text>
+  <text x="184" y="550" class="relation">manages</text>
   <path d="M610 275 H760" stroke="#334155" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
   <text x="632" y="256" class="relation">GET /api/public/site</text>
   <path d="M610 545 H760" stroke="#334155" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
   <text x="637" y="526" class="relation">/api/cms/* · JWT</text>
   <path d="M1140 380 H1215" stroke="#334155" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
-  <text x="1146" y="363" class="relation">persiste</text>
+  <text x="1146" y="363" class="relation">persists</text>
   <path d="M1140 552 H1205" stroke="#334155" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
-  <text x="1143" y="536" class="relation">genera</text>
+  <text x="1143" y="536" class="relation">generates</text>
 
   <line x1="70" y1="710" x2="1330" y2="710" stroke="#cbd5e1"/>
-  <text x="70" y="744" class="meta">El tenant se determina en la API por hostname (o X-Tenant-Slug en local); ningún cliente manipula tenantId directamente.</text>
+  <text x="70" y="744" class="meta">The API resolves the tenant by hostname (or X-Tenant-Slug locally); clients never manipulate tenantId directly.</text>
 </svg>
