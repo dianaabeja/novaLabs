@@ -1,4 +1,4 @@
-# Ad Astra Labs Frontend
+# Nova Biometrics Frontend
 
 A modern Angular 20 frontend for showcasing a configurable public site and a lightweight CMS demo. The project is designed to present tenant-specific content, navigation, sections, certifications, FAQs, and media assets in a polished, maintainable way.
 
@@ -8,6 +8,16 @@ A modern Angular 20 frontend for showcasing a configurable public site and a lig
 - Uses environment-based configurations for local, stage, and production setups
 - Includes a demo CMS flow for editing content directly in the browser
 - Ready for deployment to Vercel with a static SPA rewrite configuration
+
+## Arquitectura general
+
+![Diagrama UML de componentes de Nova Biometrics](src/assets/brand/architecture-cms.svg)
+
+Nova Biometrics es una plataforma CMS multi-tenant compuesta por dos aplicaciones Angular independientes: una landing pública, optimizada para mostrar contenido, y un panel CMS protegido para administrarlo. Ambas consumen una API NestJS compartida, responsable de resolver el tenant, aplicar autenticación y permisos, exponer los contratos REST y persistir la configuración de cada negocio en PostgreSQL mediante Prisma. Así, una nueva landing se crea por configuración de tenant y contenido, sin duplicar el frontend ni el esquema de datos.
+
+### Modo demostración
+
+Este frontend está preparado para integrarse con la arquitectura descrita y consumir los contratos de la API. Para que pueda ejecutarse y mostrarse de forma independiente en este repositorio, actualmente utiliza datos mock que simulan la respuesta del sitio público; por ello, la experiencia visual y de navegación funciona sin requerir la API, el CMS ni la base de datos activos.
 
 ## Tech Stack
 
